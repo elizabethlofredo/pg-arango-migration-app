@@ -1,4 +1,4 @@
-.App {
+.app {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -6,5 +6,49 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #fff;
+}
+
+button {
+  cursor: pointer;
+  padding: 12px 22px;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 500;
+  line-height: 2;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 12px;
+  vertical-align: middle;
+  white-space: nowrap;
+  border: 0;
+  color: #282c34;
+}
+
+label {
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: 0.03em;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+input {
+  background: none;
+  outline: none;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  margin: 0;
+  padding: 12px 16px;
+  color: #fff;
+  width: 100%;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.625px;
+  text-overflow: ellipsis;
+  resize: none;
+  box-shadow: inset 0 0 0 1px #272c33;
 }

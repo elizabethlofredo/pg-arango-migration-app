@@ -1,32 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import { SocketContextProvider } from "./hooks/useSocketContext";
+import { Home, Preview, Migrate } from "./pages";
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
 import "./App.css";
-import io from "socket.io-client";
 
-const ENDPOINT = "http://127.0.0.1:4001"; // TODO: add .env
-
-export const App = () => {
-  const [socket, setSocket] = useState();
-  const [response, setResponse] = useState("");
-
-  useEffect(() => {
-    socket?.on("init", (data) => setResponse(data));
-  }, [socket]);
-
-  const connect = () => {
-    const args = {}; // TODO: database connection attributes
-    socket.emit("init", args);
-  };
-
-  useEffect(() => {
-    const newSocket = io(ENDPOINT);
-    setSocket(newSocket);
-    return () => newSocket.close();
-  }, [setSocket]);
-
-  return (
-    <div className="App">
-      <button onClick={connect}>connect</button>
-      <p>{response}</p>
-    </div>
-  );
-};
+export const App = () => (
+  <SocketContextProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/preview" element={<Preview />} />
+        <Route path="/migrate" element={<Migrate />} />
+      </Routes>
+    </BrowserRouter>
+  </SocketContextProvider>
+);

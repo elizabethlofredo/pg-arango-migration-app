@@ -1,4 +1,4 @@
-# pg-arango-migration
+# pg-arango-migration-app
 
 - `yarn start` - Runs Electron + React + Node
 - `yarn electron-start` - To only run Electron app.

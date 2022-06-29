@@ -1,5 +1,5 @@
 {
-  "name": "pg-arango-migration",
+  "name": "pg-arango-migration-app",
   "version": "1.0.0",
   "description": "An app for transforming postgres to arango databases",
   "main": "./public/main.js",
@@ -38,10 +38,15 @@
     "@types/react-dom": "^18.0.5",
     "app-module-path": "^2.2.0",
     "axios": "^0.27.2",
+    "bootstrap": "5.2.0-beta1",
     "cors": "^2.8.5",
     "express": "^4.18.1",
+    "final-form": "^4.20.7",
+    "pg-arango-transform": "file:../pg-arango-transform",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-final-form": "^6.5.9",
+    "react-router-dom": "^6.3.0",
     "socket.io": "^4.5.1",
     "socket.io-client": "^4.5.1",
     "typescript": "^4.7.4"
