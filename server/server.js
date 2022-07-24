@@ -18,13 +18,19 @@ const io = new Server(server, {
   },
 });
 
+const socketListener = {
+  INIT: "init",
+  PREVIEW: "preview",
+  MIGRATE: "migrate”",
+};
+
 io.on("connection", (socket) => {
   console.log("New client connected");
 
   const transform = new Transform();
 
   // Establishes the connection to the Postgres database and the Arango database.
-  socket.on("init", async (arg) => {
+  socket.on(socketListener.INIT, async (arg) => {
     const { postgresConfig, arangoConfig } = arg;
 
     try {
@@ -36,10 +42,17 @@ io.on("connection", (socket) => {
   });
 
   // Returns an object that represents the preview graph.
-  socket.on("preview”", () => {});
+  socket.on(socketListener.PREVIEW, async () => {
+    try {
+      const preview = await transform.getGraphPreview();
+      socket.emit(socketListener.PREVIEW, "success", preview);
+    } catch (error) {
+      socket.emit(socketListener.PREVIEW, error.message);
+    }
+  });
 
   //Migrates the Postgres database to the Arango database.
-  socket.on("migrate”", () => {});
+  socket.on(socketListener.MIGRATE, () => {});
 
   socket.on("disconnect", () => {
     console.log("Client disconnected");

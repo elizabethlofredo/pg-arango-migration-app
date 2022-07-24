@@ -1,43 +1,64 @@
 import React, { useEffect, useState } from "react";
 import { Form, Field } from "react-final-form";
+import { useNavigate } from "react-router-dom";
 
 import { useSocketContext } from "../hooks/useSocketContext";
 import { getConfigFormat } from "./utils";
 
 const FIELDS = {
   postgres: [
-    { label: "Host", name: "host", placeholder: "localhost" },
-    { label: "Port", name: "port", placeholder: "5432" },
-    { label: "User", name: "user", placeholder: "root" },
-    { label: "Password", name: "password", placeholder: "1234" },
-    { label: "Database Name", name: "database" },
+    { label: "Host", name: "pg-host", placeholder: "localhost" },
+    { label: "Port", name: "pg-port", placeholder: "5432" },
+    { label: "User", name: "pg-user", placeholder: "postgres" },
+    { label: "Password", name: "pg-password", placeholder: "1234" },
+    { label: "Database Name", name: "pg-database" },
   ],
   arango: [
-    { label: "Url", name: "url" },
-    { label: "Username", name: "user" },
-    { label: "Password", name: "password" },
-    { label: "Database Name", name: "databaseName" },
+    { label: "URL", name: "arango-url" },
+    { label: "Username", name: "arango-user", placeholder: "postgres" },
+    { label: "Password", name: "arango-password", placeholder: "1234" },
+    { label: "Database Name", name: "arango-database" },
   ],
 };
 
 export const Home = () => {
   const [response, setResponse] = useState("");
   const { socket } = useSocketContext();
+  const navigate = useNavigate();
 
   useEffect(() => {
     socket?.on("init", (data) => setResponse(data));
   }, [socket]);
 
   const onSubmit = (data) => {
-    const { postgresConfig, arangoConfig } = getConfigFormat(data);
-    socket.emit("init", postgresConfig, arangoConfig);
+    /*  Uncomment to test  
+      const postgresConfig = {
+      host: "localhost",
+      port: "5432",
+      user: "postgres",
+      password: "1234",
+      database: "dvdrental",
+    };
+
+    const arangoConfig = {
+      databaseName: "dvdrental",
+      url: "https://8375-186-50-37-127.sa.ngrok.io/",
+      auth: {
+        username: "root",
+        password: "1234",
+      },
+    };*/
+
+    setResponse("Loading...");
+    const config = getConfigFormat(data);
+    socket.emit("init", config);
   };
 
   return (
     <div className="app">
       <Form
         onSubmit={onSubmit}
-        render={({ handleSubmit }) => (
+        render={({ handleSubmit, pristine }) => (
           <form
             onSubmit={handleSubmit}
             className="d-flex flex-column align-items-center"
@@ -50,7 +71,7 @@ export const Home = () => {
                   <>
                     <label>{label}</label>
                     <Field
-                      name={`pg-${name}`}
+                      name={name}
                       component="input"
                       placeholder={placeholder}
                     />
@@ -65,7 +86,7 @@ export const Home = () => {
                   <>
                     <label>{label}</label>
                     <Field
-                      name={`pg-${name}`}
+                      name={name}
                       component="input"
                       placeholder={placeholder}
                     />
@@ -74,13 +95,18 @@ export const Home = () => {
               </div>
             </div>
 
-            <button type="submit" className="text-align-center">
+            <button
+              type="submit"
+              className="text-align-center"
+              disabled={pristine}
+            >
               Try connection
             </button>
           </form>
         )}
       />
       <span className="mt-4 fs-6">{response}</span>
+      <button onClick={() => navigate("/preview")}>Go to preview</button>
     </div>
   );
 };
