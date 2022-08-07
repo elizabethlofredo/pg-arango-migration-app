@@ -68,14 +68,14 @@ export const Home = () => {
                 <h4>Postgres connection data:</h4>
 
                 {FIELDS.postgres.map(({ label, name, placeholder }) => (
-                  <>
+                  <React.Fragment key={name}>
                     <label>{label}</label>
                     <Field
                       name={name}
                       component="input"
                       placeholder={placeholder}
                     />
-                  </>
+                  </React.Fragment>
                 ))}
               </div>
 
@@ -83,14 +83,14 @@ export const Home = () => {
                 <h4>Arango connection data:</h4>
 
                 {FIELDS.arango.map(({ label, name, placeholder }) => (
-                  <>
+                  <React.Fragment key={name}>
                     <label>{label}</label>
                     <Field
                       name={name}
                       component="input"
                       placeholder={placeholder}
                     />
-                  </>
+                  </React.Fragment>
                 ))}
               </div>
             </div>
