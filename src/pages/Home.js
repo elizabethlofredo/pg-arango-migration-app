@@ -1,112 +1,126 @@
-import React, { useEffect, useState } from "react";
-import { Form, Field } from "react-final-form";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { Form, Field } from 'react-final-form';
+import { useNavigate } from 'react-router-dom';
+import { Console } from '../components';
+import { useConsoleContext } from '../hooks/useConsoleContext';
 
-import { useSocketContext } from "../hooks/useSocketContext";
-import { getConfigFormat } from "./utils";
+import { useSocketContext } from '../hooks/useSocketContext';
+import { HorizontalLayout } from '../layouts';
+import { getConfigFormat } from './utils';
 
 const FIELDS = {
   postgres: [
-    { label: "Host", name: "pg-host", placeholder: "localhost" },
-    { label: "Port", name: "pg-port", placeholder: "5432" },
-    { label: "User", name: "pg-user", placeholder: "postgres" },
-    { label: "Password", name: "pg-password", placeholder: "1234" },
-    { label: "Database Name", name: "pg-database" },
+    { label: 'Host', name: 'pg-host', placeholder: 'localhost' },
+    { label: 'Port', name: 'pg-port', placeholder: '5432' },
+    { label: 'User', name: 'pg-user', placeholder: 'postgres' },
+    { label: 'Password', name: 'pg-password', placeholder: '1234' },
+    { label: 'Database Name', name: 'pg-database' },
   ],
   arango: [
-    { label: "URL", name: "arango-url" },
-    { label: "Username", name: "arango-user", placeholder: "postgres" },
-    { label: "Password", name: "arango-password", placeholder: "1234" },
-    { label: "Database Name", name: "arango-database" },
+    { label: 'URL', name: 'arango-url' },
+    { label: 'Username', name: 'arango-user', placeholder: 'postgres' },
+    { label: 'Password', name: 'arango-password', placeholder: '1234' },
+    { label: 'Database Name', name: 'arango-database' },
   ],
 };
 
 export const Home = () => {
-  const [response, setResponse] = useState("");
   const { socket } = useSocketContext();
+  const { messages } = useConsoleContext();
+  const [credentialsValid, setCredentialsValid] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    socket?.on("init", (data) => setResponse(data));
+    socket?.on('init', (status, data) => {
+      if (status === 'success') {
+        setCredentialsValid(true);
+      } else {
+        setCredentialsValid(false);
+        console.error(data);
+      }
+    });
   }, [socket]);
 
   const onSubmit = (data) => {
-    /*  Uncomment to test  
-      const postgresConfig = {
-      host: "localhost",
-      port: "5432",
-      user: "postgres",
-      password: "1234",
-      database: "dvdrental",
-    };
-
-    const arangoConfig = {
-      databaseName: "dvdrental",
-      url: "https://8375-186-50-37-127.sa.ngrok.io/",
-      auth: {
-        username: "root",
-        password: "1234",
-      },
-    };*/
-
-    setResponse("Loading...");
     const config = getConfigFormat(data);
-    socket.emit("init", config);
+    socket.emit('init', config);
   };
 
   return (
-    <div className="app">
-      <Form
-        onSubmit={onSubmit}
-        render={({ handleSubmit, pristine }) => (
-          <form
-            onSubmit={handleSubmit}
-            className="d-flex flex-column align-items-center"
-          >
-            <div className="row justify-content-center mb-5">
-              <div className="col-4 me-2">
-                <h4>Postgres connection data:</h4>
-
-                {FIELDS.postgres.map(({ label, name, placeholder }) => (
-                  <React.Fragment key={name}>
-                    <label>{label}</label>
-                    <Field
-                      name={name}
-                      component="input"
-                      placeholder={placeholder}
-                    />
-                  </React.Fragment>
-                ))}
-              </div>
-
-              <div className="col-4 ms-2">
-                <h4>Arango connection data:</h4>
-
-                {FIELDS.arango.map(({ label, name, placeholder }) => (
-                  <React.Fragment key={name}>
-                    <label>{label}</label>
-                    <Field
-                      name={name}
-                      component="input"
-                      placeholder={placeholder}
-                    />
-                  </React.Fragment>
-                ))}
-              </div>
-            </div>
-
-            <button
-              type="submit"
-              className="text-align-center"
-              disabled={pristine}
+    <HorizontalLayout>
+      <div className="app">
+        <Form
+          onSubmit={onSubmit}
+          render={({ handleSubmit, pristine }) => (
+            <form
+              onSubmit={handleSubmit}
+              className="d-flex flex-column align-items-center"
             >
-              Try connection
-            </button>
-          </form>
-        )}
-      />
-      <span className="mt-4 fs-6">{response}</span>
-      <button onClick={() => navigate("/preview")}>Go to preview</button>
-    </div>
+              <div className="row justify-content-center mb-5">
+                <div className="col-4 me-2">
+                  <h4>Postgres connection data:</h4>
+
+                  {FIELDS.postgres.map(({ label, name, placeholder }) => (
+                    <React.Fragment key={name}>
+                      <label>{label}</label>
+                      <Field
+                        name={name}
+                        component="input"
+                        placeholder={placeholder}
+                      />
+                    </React.Fragment>
+                  ))}
+                </div>
+
+                <div className="col-4 ms-2">
+                  <h4>Arango connection data:</h4>
+
+                  {FIELDS.arango.map(({ label, name, placeholder }) => (
+                    <React.Fragment key={name}>
+                      <label>{label}</label>
+                      <Field
+                        name={name}
+                        component="input"
+                        placeholder={placeholder}
+                      />
+                    </React.Fragment>
+                  ))}
+                </div>
+              </div>
+
+              <div className="d-flex flex-column gap-4">
+                <button
+                  type="submit"
+                  className="text-align-center"
+                  disabled={pristine}
+                >
+                  Test connection
+                </button>
+
+                <div className="d-flex gap-2">
+                  <button
+                    type="button"
+                    className="text-align-center"
+                    disabled={!credentialsValid}
+                    onClick={() => navigate('/migrate')}
+                  >
+                    Migrate database
+                  </button>
+
+                  <button
+                    type="button"
+                    className="text-align-center"
+                    disabled={!credentialsValid}
+                  >
+                    Preview graph
+                  </button>
+                </div>
+              </div>
+            </form>
+          )}
+        />
+      </div>
+      <Console messages={messages} />
+    </HorizontalLayout>
   );
 };
