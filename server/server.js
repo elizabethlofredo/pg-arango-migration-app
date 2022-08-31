@@ -50,7 +50,7 @@ io.on('connection', (socket) => {
   socket.on(socketActions.PREVIEW, async () => {
     try {
       const preview = await transform.getGraphPreview();
-      socket.emit(socketActions.PREVIEW, socketResponseTypes.SUCCESS);
+      socket.emit(socketActions.PREVIEW, socketResponseTypes.SUCCESS, preview);
     } catch (error) {
       socket.emit(
         socketActions.PREVIEW,

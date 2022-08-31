@@ -7,21 +7,16 @@ export const Console = ({ messages, className }) => {
         {messages.map((message, index) => (
           <div
             key={index}
-            className={classNames(
-              message.type === 'error'
-                ? 'text-danger bg-error'
-                : message.type === 'done'
-                ? 'text-success bg-success'
-                : message.type === 'info'
-                ? 'text-info bg-info'
-                : 'text-white',
-              'px-3 bg-opacity-25'
-            )}
+            className={classNames('px-3 bg-opacity-25 text-white', {
+              'text-danger bg-error': message.type === 'error',
+              'text-success bg-success': message.type === 'done',
+              'text-info bg-info': message.type === 'info',
+            })}
           >
             <p>> {message.message}</p>
           </div>
         ))}
       </div>
     </div>
-  )
+  );
 };
