@@ -43,7 +43,7 @@
     "classnames": "^2.3.1",
     "cors": "^2.8.5",
     "express": "^4.18.1",
-    "final-form": "^4.20.7",
+    "final-form": "^4.20.8",
     "pg-arango-transform": "file:../pg-arango-transform",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
