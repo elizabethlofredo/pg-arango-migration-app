@@ -1,0 +1,61 @@
+button, a.button {
+  cursor: pointer;
+  text-decoration: none;
+  font-family: 'Open Sans', sans-serif;
+  padding: 12px 22px;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 500;
+  line-height: 2;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  vertical-align: middle;
+  white-space: nowrap;
+  border: 0;
+  background-color: $primary;
+
+  &:hover {
+    background-color: lighten($primary, 5%);
+  }
+
+  &:active {
+    background-color: darken($primary, 5%);
+  }
+
+  &:disabled {
+    background-color: $disabled;
+    cursor: not-allowed;
+  }
+
+  &.link {
+    background-color: transparent;
+    color: $primary;
+    font-weight: 600;
+    letter-spacing: initial;
+    padding: 0;
+    &:hover {
+      color: lighten($primary, 10%);
+    }
+    &:active {
+      color: darken($primary, 10%);
+    }
+  }
+}
+
+a.link {
+  color: $primary;
+  text-decoration: none;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  &:hover {
+    color: lighten($primary, 10%);
+  }
+  &:active {
+    color: darken($primary, 10%);
+  }
+}

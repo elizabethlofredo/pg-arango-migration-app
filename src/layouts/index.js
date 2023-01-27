@@ -1,1 +1,1 @@
-export * from './HorizontalLayout'
+export * from './MainLayout'
