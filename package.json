@@ -39,7 +39,7 @@
     "allotment": "^1.15.0",
     "app-module-path": "^2.2.0",
     "axios": "^0.27.2",
-    "bootstrap": "5.2.0-beta1",
+    "bootstrap": "5.2.3",
     "bootstrap-icons": "1.10.2",
     "classnames": "^2.3.2",
     "cors": "^2.8.5",
