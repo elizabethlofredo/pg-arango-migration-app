@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700&family=Roboto:wght@300;400;700&display=swap');
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+$postgres: #336791;
+$arango: #a3b34f;
+$primary: $postgres;
+$background: #F5F8FA;
+$text-primary: #14171A;
+$text-secodary: #657786;
+$disabled: #AAB8C2;
+
+@import '~bootstrap/scss/bootstrap';
+
+html, body {
+  background-color: $background;
+}
+
+@import './styles/Alert.scss';
+@import './styles/Button.scss';
+@import './styles/Input.scss';
+@import './styles/Misc.scss';
+@import './styles/Text.scss';

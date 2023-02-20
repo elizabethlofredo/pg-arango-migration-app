@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import Graph from "react-graph-vis";
+import { Link } from "react-router-dom";
 
 import { useSocketContext } from "../hooks/useSocketContext";
 
 export const Preview = () => {
-  const [message, setMessage] = useState("");
-  const [graph, setGraph] = useState("");
+  const [graph, setGraph] = useState();
   const { socket } = useSocketContext();
 
   useEffect(() => {
-    socket?.on("preview", (message, data) => {
+    socket?.on("preview", (_message, data) => {
       setGraph(data);
-      setMessage(message);
     });
+    socket.emit("preview");
   }, [socket]);
 
   const handlePreview = () => {
@@ -25,7 +25,7 @@ export const Preview = () => {
       hierarchical: false,
     },
     edges: {
-      color: "white",
+      color: "black",
     },
     nodes: {
       color: "#a2cfcf",
@@ -35,13 +35,12 @@ export const Preview = () => {
   };
 
   return (
-    <div className="app">
-      <button className="text-align-center" onClick={handlePreview}>
-        Preview database
-      </button>
-      {message}
+    <div className="app h-100">
+      <Link to="/" className="link">
+        Go back
+      </Link>
       {graph && (
-        <Graph graph={graph} options={options} style={{ height: "640px" }} />
+        <Graph graph={graph} options={options} style={{ height: '640px' }} />
       )}
     </div>
   );

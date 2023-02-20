@@ -1,0 +1,40 @@
+span {
+  font-size: 16px;
+  padding: 8px 0px;
+  line-height: 2;
+  font-weight: 500;
+
+  &.error {
+    font-weight: 300;
+    font-size: 14px;
+    color: $danger;
+    line-height: 1;
+
+    &.hidden {
+      opacity: 0;
+    }
+  }
+}
+
+label {
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: 0.03em;
+  font-size: 12px;
+  margin-bottom: 4px;
+  color: $text-secodary;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+
+  &[required] {
+    &::after {
+      content: "*";
+      color: $danger;
+    }
+  }
+}
+
+p {
+  margin-bottom: 0;
+}

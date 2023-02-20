@@ -1,0 +1,29 @@
+.connection-fields {
+  padding: 0 10px;
+}
+
+.connection-header {
+  border-bottom: 3px solid;
+  margin-bottom: 30px;
+  color: white;
+
+  &.pg {
+    background-color: lighten($postgres, 30%);
+    padding: 5px 10px;
+    border-bottom-color: $postgres;
+  }
+
+  &.arango {
+    background-color: lighten($arango, 30%);
+    padding: 5px 10px;
+    border-bottom-color: $arango;
+  }
+}
+
+.h-30 {
+  height: 30rem !important;
+}
+
+.ml-auto {
+  margin-left: auto;
+}

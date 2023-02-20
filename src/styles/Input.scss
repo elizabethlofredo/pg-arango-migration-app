@@ -1,0 +1,33 @@
+input {
+  background: #fff;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  margin: 0;
+  padding: 12px 16px;
+  width: 100%;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.625px;
+  text-overflow: ellipsis;
+  resize: none;
+
+  &.pg {
+    &:focus {
+      border: 1px solid $postgres;
+    }
+  }
+
+  &.arango {
+    &:focus {
+      border: 1px solid $arango;
+    }
+  }
+
+  &::placeholder {
+    color: $disabled
+  }
+
+  &.error {
+    border-color: $danger;
+  }
+}

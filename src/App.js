@@ -2,16 +2,17 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { SocketContextProvider } from './hooks/useSocketContext';
-import { Home, Preview, Migrate } from './pages';
+import { Preview, Migrate, Home } from './pages';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import './App.css';
+import './App.scss';
 import { ConsoleContextProvider } from './hooks/useConsoleContext';
+import { MainLayout } from './layouts';
 
 export const App = () => (
   <ConsoleContextProvider>
     <SocketContextProvider>
+      <MainLayout>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -19,6 +20,7 @@ export const App = () => (
           <Route path="/migrate" element={<Migrate />} />
         </Routes>
       </BrowserRouter>
+      </MainLayout>
     </SocketContextProvider>
   </ConsoleContextProvider>
 );
