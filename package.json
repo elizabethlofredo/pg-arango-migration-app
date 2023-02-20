@@ -43,7 +43,7 @@
     "bootstrap-icons": "1.10.2",
     "classnames": "^2.3.2",
     "cors": "^2.8.5",
-    "express": "^4.18.1",
+    "express": "^4.18.2",
     "final-form": "^4.20.7",
     "pg-arango-transform": "file:../pg-arango-transform",
     "react": "^18.2.0",
