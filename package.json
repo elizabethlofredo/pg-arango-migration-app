@@ -50,7 +50,7 @@
     "react-dom": "^18.2.0",
     "react-final-form": "^6.5.9",
     "react-graph-vis": "^1.0.7",
-    "react-router-dom": "^6.3.0",
+    "react-router-dom": "^6.8.2",
     "sass": "^1.57.1",
     "socket.io": "^4.5.1",
     "socket.io-client": "^4.5.1",
