@@ -1,10 +1,26 @@
 export function MainLayout({ children }) {
   return (
-    <div className="h-100">
-      <div className="bg-primary p-2">
-        <img height="80" src="/images/banner.png" />
-      </div>
-      <main className="p-4">{children}</main>
+    <div className='h-100'>
+      <img
+        height='120'
+        src='/images/logo.png'
+        className='logo'
+        alt='PGArango logo'
+      />
+
+      <main className='col-8 m-auto my-5'>
+        <div className='row justify-content-center text-center'>
+          <div className='col-8 pb-5'>
+            <h1>From relational to graph</h1>
+            <p>
+              PGArango transform allows you to automatically convert a
+              PostgresSQL relational database into a graph database in ArangoDB.
+              Follow the instructions below and get the fun start!
+            </p>
+          </div>
+        </div>
+        {children}
+      </main>
     </div>
   );
 }
