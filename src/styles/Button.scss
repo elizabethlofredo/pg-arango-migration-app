@@ -1,61 +1,57 @@
-button, a.button {
-  cursor: pointer;
-  text-decoration: none;
-  font-family: 'Open Sans', sans-serif;
-  padding: 12px 22px;
-  font-size: 12px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-weight: 500;
-  line-height: 2;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  vertical-align: middle;
-  white-space: nowrap;
-  border: 0;
-  background-color: $primary;
-
-  &:hover {
-    background-color: lighten($primary, 5%);
-  }
-
-  &:active {
-    background-color: darken($primary, 5%);
-  }
-
-  &:disabled {
-    background-color: $disabled;
-    cursor: not-allowed;
-  }
-
-  &.link {
-    background-color: transparent;
-    color: $primary;
-    font-weight: 600;
-    letter-spacing: initial;
-    padding: 0;
-    &:hover {
-      color: lighten($primary, 10%);
-    }
-    &:active {
-      color: darken($primary, 10%);
-    }
-  }
+button {
+  font-family: 'DM Sans';
+  font-style: normal;
 }
 
-a.link {
+.primary-button {
+  background: $primary;
+  box-shadow: 0px 3px 12px rgba(74, 58, 255, 0.18);
+  border-radius: 56px;
+  color: $white;
+  height: 61px;
+  padding: 20px 40px 21px;
+
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 20px;
+  text-align: center;
+}
+
+.secondary-button {
+  background: $white;
+  box-shadow: 0px 3px 12px rgba(74, 58, 255, 0.18);
+  border-radius: 56px;
   color: $primary;
-  text-decoration: none;
-  font-weight: 600;
-  text-transform: uppercase;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 12px;
+  padding: 10px;
+
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+}
+
+.big-button {
+  background: $white;
+  box-shadow: 0px 2px 11px rgba(69, 65, 164, 0.06),
+    0px 4px 10px rgba(31, 37, 89, 0.07);
+  border-radius: 16px;
+  color: $text-primary;
+  border: 1px solid $light;
+  margin: 0 10px;
+  width: 284px;
+  height: 115px;
+
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
+
   &:hover {
-    color: lighten($primary, 10%);
+    border: 2px solid $primary;
   }
-  &:active {
-    color: darken($primary, 10%);
+
+  .img-container {
+    background-color: rgba(163, 179, 79, 0.2);
+    border-radius: 50%;
+    padding: 3px;
   }
 }

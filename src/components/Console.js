@@ -2,9 +2,13 @@ import classNames from 'classnames';
 
 export const Console = ({ messages, className }) => {
   return (
-    <div className={classNames('d-flex flex-column h-100 w-100 bg-dark', className)}>
-
-      <div className="bg-dark w-100 h-100 fs-6 d-flex flex-column gap-1 overflow-scroll">
+    <div
+      className={classNames(
+        'd-flex flex-column bg-dark py-4 rounded',
+        className
+      )}
+    >
+      <div className='bg-dark w-100 h-100 fs-6 d-flex flex-column gap-1 overflow-scroll'>
         {messages.map((message, index) => (
           <div
             key={index}
@@ -14,7 +18,7 @@ export const Console = ({ messages, className }) => {
               'text-info bg-info': message.type === 'info',
             })}
           >
-            <p> {message.message}</p>
+            <p className='console-message'>{message.message}</p>
           </div>
         ))}
       </div>

@@ -1,29 +1,38 @@
-.connection-fields {
-  padding: 0 10px;
+.separator {
+  border-top: 1px solid #d9dbe9;
+  width: 100%;
+  margin-top: 32px;
+  margin-bottom: 64px;
 }
 
-.connection-header {
-  border-bottom: 3px solid;
-  margin-bottom: 30px;
-  color: white;
+.connection-container {
+  background: $white;
 
-  &.pg {
-    background-color: lighten($postgres, 30%);
-    padding: 5px 10px;
-    border-bottom-color: $postgres;
-  }
+  border: 1px solid $light;
 
-  &.arango {
-    background-color: lighten($arango, 30%);
-    padding: 5px 10px;
-    border-bottom-color: $arango;
-  }
+  box-shadow: 0px 5px 16px rgba(8, 15, 52, 0.06);
+  border-radius: 34px;
+  padding: 33px 38px;
 }
 
-.h-30 {
-  height: 30rem !important;
+.logo {
+  position: absolute;
+  top: 15px;
+  left: 15px;
 }
 
-.ml-auto {
-  margin-left: auto;
+.preview-container {
+  border: 1px solid $light;
+  margin-top: 40px;
+}
+
+.logs {
+  height: 500px;
+}
+
+.console-message {
+  color: $white;
+  font-family: monospace;
+  font-size: 16px;
+  margin: 0;
 }
