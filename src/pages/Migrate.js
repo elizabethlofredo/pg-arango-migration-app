@@ -37,7 +37,7 @@ export const Migrate = () => {
       <div className='separator' />
 
       {done ? (
-        <div className='text-center col-6 mx-auto'>
+        <div className='text-center col-6 mx-auto mb-5'>
           <img height='150' src='/images/check.svg' alt='' />
           <h2 className='mt-2'>Successfully migrated</h2>
           <p>
@@ -52,19 +52,21 @@ export const Migrate = () => {
             The migration has started, you can see the progress in the following
             logs.
           </p>
-
-          <div className='row'>
-            <Console messages={messages} />
-
-            <button
-              className='secondary-button col-2 mt-3 mx-auto'
-              onClick={clearMessages}
-            >
-              Clear logs
-            </button>
-          </div>
         </>
       )}
+
+      <>
+        <div className='row'>
+          <Console messages={messages} className='logs' />
+
+          <button
+            className='secondary-button col-2 mt-3 mx-auto'
+            onClick={clearMessages}
+          >
+            Clear logs
+          </button>
+        </div>
+      </>
     </div>
   );
 };

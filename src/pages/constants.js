@@ -20,7 +20,6 @@ export const CONNECTION_FIELDS = {
       name: 'pg-password',
       props: {
         type: 'password',
-        placeholder: '1234',
       },
     },
     { label: 'Database Name', name: 'pg-database', props: { required: true } },

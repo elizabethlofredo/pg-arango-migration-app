@@ -20,3 +20,19 @@
   top: 15px;
   left: 15px;
 }
+
+.preview-container {
+  border: 1px solid $light;
+  margin-top: 40px;
+}
+
+.logs {
+  height: 500px;
+}
+
+.console-message {
+  color: $white;
+  font-family: monospace;
+  font-size: 16px;
+  margin: 0;
+}

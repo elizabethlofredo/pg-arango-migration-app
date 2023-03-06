@@ -86,7 +86,11 @@ export const Home = () => {
                   <h2>ArangoDB connection data:</h2>
                   <p>
                     The following information is needed in order to connect with
-                    the PostgresSQL database
+                    the ArangoDB database. <br />
+                    <strong>
+                      Be aware that the creation of the database in the ArangoDB
+                      dashboard is needed before starting the migration.
+                    </strong>
                   </p>
 
                   <div className='connection-fields row'>
@@ -122,7 +126,7 @@ export const Home = () => {
                 <div className='mt-5 d-flex justify-content-between align-items-start'>
                   <span>* Required fields.</span>
                   <button className='primary-button' type='submit'>
-                    Validate connection
+                    Connect
                   </button>
                 </div>
               </div>

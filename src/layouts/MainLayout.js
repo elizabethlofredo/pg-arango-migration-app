@@ -15,7 +15,7 @@ export function MainLayout({ children }) {
             <p>
               PGArango transform allows you to automatically convert a
               PostgresSQL relational database into a graph database in ArangoDB.
-              Follow the instructions below and get the fun start!
+              Follow the instructions to get stated.
             </p>
           </div>
         </div>

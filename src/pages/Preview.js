@@ -21,6 +21,7 @@ export const Preview = () => {
     socket?.on('preview', (message, data) => {
       setGraph(data);
       setLoading(false);
+
       if (message === 'error') {
         navigate(paths.connection);
 
@@ -50,10 +51,8 @@ export const Preview = () => {
       color: '#a2cfcf',
       borderWidth: 2,
     },
-    interaction: { hoverEdges: true },
+    interaction: { hover: true },
   };
-
-  //console.log(graph);
 
   return (
     <div className='app h-100'>
@@ -64,7 +63,7 @@ export const Preview = () => {
         <h2>Preview the schema graph</h2>
         <p>
           Have a quick look of how your relational database will look when
-          migrated to a graph in ArangoDB
+          migrated to a graph in ArangoDB.
         </p>
         {!previewOn && (
           <div className='d-flex justify-content-center my-5'>
@@ -84,14 +83,30 @@ export const Preview = () => {
         )}
         {previewOn && (
           <div>
-            {loading && <div className='spinner-border' role='status' />}
+            {loading && (
+              <div className='d-flex justify-content-center'>
+                <div className='spinner-border' role='status' />
+              </div>
+            )}
 
             {!!graph && (
-              <Graph
-                graph={graph}
-                options={options}
-                style={{ height: '640px' }}
-              />
+              <>
+                <div className='preview-container'>
+                  <Graph
+                    graph={graph}
+                    options={options}
+                    style={{ height: '640px' }}
+                  />
+                </div>
+                <div className='mt-5 d-flex justify-content-end'>
+                  <button
+                    className='primary-button'
+                    onClick={() => navigate(paths.migrate)}
+                  >
+                    Migrate Database
+                  </button>
+                </div>
+              </>
             )}
           </div>
         )}

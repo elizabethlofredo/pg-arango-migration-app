@@ -4,7 +4,7 @@ export const Console = ({ messages, className }) => {
   return (
     <div
       className={classNames(
-        'd-flex flex-column h-100 w-100 bg-dark py-4 rounded',
+        'd-flex flex-column bg-dark py-4 rounded',
         className
       )}
     >
@@ -18,7 +18,7 @@ export const Console = ({ messages, className }) => {
               'text-info bg-info': message.type === 'info',
             })}
           >
-            <p> {message.message}</p>
+            <p className='console-message'>{message.message}</p>
           </div>
         ))}
       </div>
