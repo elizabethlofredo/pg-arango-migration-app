@@ -1,6 +1,22 @@
 # pg-arango-migration-app
 
-- `yarn start` - Runs Electron + React + Node
-- `yarn electron-start` - To only run Electron app.
-- `yarn react-start` - To only run React app.
-- `yarn react-start` - To only run the server.
+<img src="https://github.com/elizabethlofredo/pg-arango-migration-app/blob/main/public/images/logo.png?raw=true" alt='app logo' width="100" height="100">
+
+## What is PGArango Migration App?
+
+It's an application that provides the user steps to automatically converts relational databases in PostgreSQL to graph databases in ArangoDB by using [pg-arango-transform](https://github.com/augusto1024/pg-arango-transform) library.
+
+Created by using **React.js** + **Electron** to create the user interface and **Node.js** for the server that connects with the library logic.
+
+## Commands
+
+- `yarn` or `npm install` - install dependencies
+- `yarn start` - runs Electron + React + Node
+- `yarn electron-start` - only runs Electron app.
+- `yarn react-start` - only runs React app.
+- `yarn react-start` - only runs the server.
+
+## Creators
+
+[Augusto Alonso](https://github.com/augusto1024)  
+[Elizabeth Lofredo](https://github.com/elizabethlofredo)
