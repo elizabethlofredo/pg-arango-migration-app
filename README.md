@@ -6,7 +6,7 @@
 
 It's an application that provides the user steps to automatically converts relational databases in PostgreSQL to graph databases in ArangoDB by using [pg-arango-transform](https://github.com/augusto1024/pg-arango-transform) library.
 
-Created by using **React.js** + **Electron** to create the user interface and **Node.js** for the server that connects with the library logic.
+Created using **React.js** + **Electron** for the user interface and **Node.js** for the server that makes use of [pg-arango-transform](https://github.com/augusto1024/pg-arango-transform), the library that performs the database transformation.
 
 ## Commands
 
