@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Form, Field } from 'react-final-form';
 import { useNavigate } from 'react-router-dom';
 
@@ -10,9 +10,14 @@ import { getConfigFormat } from './utils';
 import { CONNECTION_FIELDS, ERROR_MESSAGES } from './constants';
 import { paths } from './paths';
 
+const SESSION_STORAGE_CREDENTIALS_KEY = 'pg-arango-credentials';
+
 export const Home = () => {
   const { socket } = useSocketContext();
   const { clearMessages } = useConsoleContext();
+  const [initialValues] = useState(() =>
+    JSON.parse(sessionStorage.getItem(SESSION_STORAGE_CREDENTIALS_KEY))
+  );
 
   const navigate = useNavigate();
 
@@ -30,6 +35,10 @@ export const Home = () => {
   }, [socket]);
 
   const onSubmit = (data) => {
+    sessionStorage.setItem(
+      SESSION_STORAGE_CREDENTIALS_KEY,
+      JSON.stringify(data)
+    );
     const config = getConfigFormat(data);
     clearMessages();
     clearToast();
@@ -40,13 +49,14 @@ export const Home = () => {
 
   return (
     <div>
-      <div className='connection-container'>
+      <div className="connection-container">
         <Breadcrumb active={STEPS.connection} />
-        <div className='separator' />
+        <div className="separator" />
         <Form
+          initialValues={initialValues}
           onSubmit={onSubmit}
           render={({ handleSubmit, modifiedSinceLastSubmit }) => (
-            <form onSubmit={handleSubmit} className='d-flex flex-column'>
+            <form onSubmit={handleSubmit} className="d-flex flex-column">
               <div>
                 <div>
                   <h2>PostgresSQL connection data:</h2>
@@ -55,14 +65,14 @@ export const Home = () => {
                     the PostgresSQL database.
                   </p>
 
-                  <div className='connection-fields row'>
+                  <div className="connection-fields row">
                     {CONNECTION_FIELDS.postgres.map(
                       ({ label, name, props: { required, ...props } = {} }) => (
                         <React.Fragment key={name}>
                           <Field name={name} validate={required && isRequired}>
                             {({ input, meta }) => (
-                              <div className='col-6'>
-                                <div className='d-flex flex-column'>
+                              <div className="col-6">
+                                <div className="d-flex flex-column">
                                   <label>
                                     {required && <span>*</span>}
                                     {label}
@@ -70,7 +80,7 @@ export const Home = () => {
                                   <input {...props} {...input} />
 
                                   {meta.error && meta.touched && (
-                                    <span className='error'>{meta.error}</span>
+                                    <span className="error">{meta.error}</span>
                                   )}
                                 </div>
                               </div>
@@ -82,7 +92,7 @@ export const Home = () => {
                   </div>
                 </div>
 
-                <div className='mt-5'>
+                <div className="mt-5">
                   <h2>ArangoDB connection data:</h2>
                   <p>
                     The following information is needed in order to connect with
@@ -93,25 +103,25 @@ export const Home = () => {
                     </strong>
                   </p>
 
-                  <div className='connection-fields row'>
+                  <div className="connection-fields row">
                     {CONNECTION_FIELDS.arango.map(
                       ({ label, name, props: { required, ...props } = {} }) => (
                         <React.Fragment key={name}>
                           <Field
                             name={name}
-                            className='arango'
+                            className="arango"
                             validate={required && isRequired}
                           >
                             {({ input, meta }) => (
-                              <div className='col-6'>
-                                <div className='d-flex flex-column'>
+                              <div className="col-6">
+                                <div className="d-flex flex-column">
                                   <label>
                                     {required && <span>*</span>}
                                     {label}
                                   </label>
                                   <input {...props} {...input} />
                                   {meta.error && meta.touched && (
-                                    <span className='error'>{meta.error}</span>
+                                    <span className="error">{meta.error}</span>
                                   )}
                                 </div>
                               </div>
@@ -123,9 +133,9 @@ export const Home = () => {
                   </div>
                 </div>
 
-                <div className='mt-5 d-flex justify-content-between align-items-start'>
+                <div className="mt-5 d-flex justify-content-between align-items-start">
                   <span>* Required fields.</span>
-                  <button className='primary-button' type='submit'>
+                  <button className="primary-button" type="submit">
                     Connect
                   </button>
                 </div>
