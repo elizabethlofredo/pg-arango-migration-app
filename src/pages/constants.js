@@ -3,7 +3,7 @@ export const CONNECTION_FIELDS = {
     {
       label: 'Host',
       name: 'pg-host',
-      props: { required: true, placeholder: 'localhost' },
+      props: { required: true },
     },
     {
       label: 'Port',
@@ -13,7 +13,7 @@ export const CONNECTION_FIELDS = {
     {
       label: 'User',
       name: 'pg-user',
-      props: { required: true, placeholder: 'postgres' },
+      props: { required: true },
     },
     {
       label: 'Password',
